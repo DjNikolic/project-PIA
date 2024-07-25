@@ -1,0 +1,99 @@
+<div class="container-main">
+
+<p-panel header="Zahtevi dostava" class="container2">
+    <p-table [value]="nove_dostave" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    Narudbina
+                </th>
+                <th>
+                    Vreme pripreme
+                </th>
+                <th>
+                    Potvrdi
+                </th>
+                <th>
+                    Odbij
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-nove_dostave>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <th>Jelo:</th>
+                            <th>Kolicina:</th>
+                        </tr>
+                        <tr *ngFor="let s of nove_dostave.stavke">
+                            <td style="width: 50%;"> {{s.jelovnik.naziv}}</td>
+                            <td style="width: 50%;"> {{s.kolicina}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <p-dropdown 
+                        [options]="opcije" 
+                        [(ngModel)]="nove_dostave.vreme_dostave" 
+                        optionLabel="name"
+                        optionValue="code"
+                        placeholder="Vreme pripreme"
+                        appendTo="body" />
+                </td>
+                <td>
+                    <p-button (click)="potvrdiDostavu(nove_dostave)">Potrvrdi</p-button>
+                </td>
+                <td>
+                    <p-button (click)="odbijDostavu(nove_dostave)">Odbij</p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+
+<p-panel header="Dostave u pripremi" class="container2">
+    <p-table [value]="pripremane_dostave" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    Narudbina
+                </th>
+                <th>
+                    Vreme pripreme
+                </th>
+                <th>
+                    Gotovo
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pripremane_dostave>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <th>Jelo:</th>
+                            <th>Kolicina:</th>
+                        </tr>
+                        <tr *ngFor="let s of pripremane_dostave.stavke">
+                            <td style="width: 50%;"> {{s.jelovnik.naziv}}</td>
+                            <td style="width: 50%;"> {{s.kolicina}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    {{pripremane_dostave.vreme_dostave}}
+                </td>
+                <td>
+                    <p-button (click)="gotovaDostava(pripremane_dostave)">Potrvrdi</p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+</div>
+
+
+

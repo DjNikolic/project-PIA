@@ -1,0 +1,114 @@
+<div class="container-main">
+  <p-panel header="Profil" class="container">
+    <div>
+    <table class="component-center">
+      <tr>
+          <td style="width:50%">
+            <div *ngIf="!azuriraj_uzlov">
+              <img [src]="putanja_slike" width="200" height="200">
+            </div>
+            <div *ngIf="azuriraj_uzlov" >
+              Slika: 
+              <p-fileUpload mode="basic" chooseIcon="pi pi-upload" chooseLabel="Izaberi" accept="image/jpeg, image/png" (onSelect)="unetaSlika($event)"/>
+            </div>
+          </td>
+  
+          <td style="width:50%">
+            <div>
+              <form (ngSubmit)="potvrdi(forma)" #forma="ngForm" novalidate>
+                <table>
+                    <tr>
+                        <td>Ime:</td>  
+                        <td *ngIf="!azuriraj_uzlov">{{gost.ime}}</td>
+                        <td *ngIf="azuriraj_uzlov">
+                            <input type="text" pInputText placeholder="gost.ime" [(ngModel)]="gost_azuriran.ime" #ime="ngModel"
+                            name="ime"
+                            pattern="^[A-Za-z]+$">
+                            <div *ngIf="ime.invalid && (ime.dirty || ime.touched)">
+                                <span *ngIf="ime.errors?.['pattern']" style="color: red;"> Ime nije u odgovarajucem formatu</span>
+                        
+                            </div>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td>Prezime:</td>
+                        <td *ngIf="!azuriraj_uzlov">{{gost.prezime}}</td>
+                        <td *ngIf="azuriraj_uzlov">
+                            <input type="text" pInputText placeholder="gost.prezime" [(ngModel)]="gost_azuriran.prezime" #prezime="ngModel" 
+                            name="prezime"
+                            pattern="^[A-Za-z]+$">
+                            <div *ngIf="prezime.invalid && (prezime.dirty || prezime.touched)">
+                                <span *ngIf="prezime.errors?.['pattern']" style="color: red;"> Prezime nije u odgovarajucem formatu</span>
+                            </div>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td>Adresa:</td>
+                        <td *ngIf="!azuriraj_uzlov">{{gost.adresa}}</td>
+                        <td *ngIf="azuriraj_uzlov">
+                            <input type="text" pInputText placeholder="gost.adresa" [(ngModel)]="gost_azuriran.adresa" #adresa="ngModel" 
+                            name="adresa">
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td>Mejl:</td>
+                        <td *ngIf="!azuriraj_uzlov">{{gost.mejl}}</td>
+                        <td *ngIf="azuriraj_uzlov">
+                            <input type="text" pInputText placeholder="gost.mejl" [(ngModel)]="gost_azuriran.mejl" #mejl="ngModel"
+                            name="mejl" 
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            <div *ngIf="mejl.invalid && (mejl.dirty || mejl.touched)">
+                                <span *ngIf="mejl.errors?.['pattern']" style="color: red;"> Mejl nije unet u odgovarajucem formatu</span>
+                            </div>
+                    </td>
+                    </tr>
+    
+                    <tr>
+                        <td>Telefon:</td>
+                        <td *ngIf="!azuriraj_uzlov">{{gost.telefon}}</td>
+                        <td *ngIf="azuriraj_uzlov">
+                            <input type="text" pInputText placeholder="gost.telefon" [(ngModel)]="gost_azuriran.telefon" #telefon="ngModel"
+                            name="telefon"
+                            pattern="^(\+3816|06)[0-9]{7,8}$">
+                            <div *ngIf="telefon.invalid && (telefon.dirty || telefon.touched)">
+                                <span *ngIf="telefon.errors?.['pattern']" style="color: red;"> Telefon nije unet u odgovarajucem formatu</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kartica:</td>
+                        <td *ngIf="!azuriraj_uzlov">{{gost.kartica}}</td>
+                        <td *ngIf="azuriraj_uzlov">
+                            <input type="text" pInputText placeholder="gost.kartica" [(ngModel)]="gost_azuriran.kartica" #kartica="ngModel" 
+                            name="kartica"
+                            pattern="^[0-9]{16}/[0-9]{3}$">
+                            <div *ngIf="kartica.invalid && (kartica.dirty || kartica.touched)">
+                                <span *ngIf="kartica.errors?.['pattern']" style="color: red;"> Kreditna kartica nije uneta u odgovarajucem formatu</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div *ngIf="!azuriraj_uzlov">
+                          <p-button (click)="azuriraj()">Azuriraj</p-button>
+                        </div>
+                        <div *ngIf="azuriraj_uzlov" style="display:flex; justify-content: space-between;">
+                          <p-button type="submit" [style]="{'margin-right' : '5px'}">Potvrdi</p-button>
+                          <p-button (click)="otkazi()" [style]="{'margin-right' : '5px'}">Otkazi</p-button>
+                        </div> 
+                      </td>
+                    </tr>
+                </table>
+              </form>
+            </div>
+          </td>
+      </tr>
+    </table>
+  </div>
+  </p-panel>
+</div>
+
+ 

@@ -1,0 +1,98 @@
+
+<div class="container-main">
+
+
+<p-panel header="Aktivne rezervacije" class="container2">
+    <p-table [value]="aktivne_rezervacije">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    Vreme rezervacije:
+                </th>
+                <th>
+                    Naziv restorana:
+                </th>
+                <th>
+                    Adresa restorana:
+                </th>
+                <th>
+                    Status:
+                </th>
+                <th>
+                    Napomena:
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-aktivne_rezervacije>
+            <tr>
+                <td>
+                    {{aktivne_rezervacije.pocetak|date: 'dd.MM.yyyy HH:mm'}}
+                </td>
+                <td>
+                    {{aktivne_rezervacije.restoran.naziv}}
+                </td>
+                <td>
+                    {{aktivne_rezervacije.restoran.adresa}}
+                </td>
+                <td>
+                    <div *ngIf="aktivne_rezervacije.status == 'Z'">
+                        <span style="color: yellow">Zahtev</span>
+                    </div>
+                    <div *ngIf="aktivne_rezervacije.status == 'P'">
+                        <span style="color: green">Potvrdjena</span>
+                    </div>
+                    <div *ngIf="aktivne_rezervacije.status == 'O'">
+                        <span style="color: red">Odbijena</span>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="aktivne_rezervacije.status == 'O'">
+                        <span style="color: red">{{aktivne_rezervacije.razlog}}</span>
+                    </div>
+                </td>  
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+<p-panel header="Arhiva rezervacija" class="container2">
+    <p-table [value]="arhivirane_rezervacije" class="p-table">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    Vreme rezervacije:
+                </th>
+                <th>
+                    Naziv restorana:
+                </th>
+                <th>
+                    Status:
+                </th>
+                <th>
+    
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-arhivirane_rezervacije>
+            <tr>
+                <td>
+                    {{arhivirane_rezervacije.pocetak|date: 'dd.MM.yyyy HH:mm'}}
+                </td>
+                <td>
+                    {{arhivirane_rezervacije.restoran.naziv}}
+                </td>
+                <td>
+                    <div *ngIf="arhivirane_rezervacije.status == 'D'">
+                        <span style="color: green">Dosao</span>
+                    </div>
+                    <div *ngIf="arhivirane_rezervacije.status == 'N'">
+                        <span style="color: red">Nije dosao</span>
+                    </div>
+                </td> 
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+</div>
+

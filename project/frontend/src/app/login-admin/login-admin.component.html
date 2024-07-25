@@ -1,0 +1,33 @@
+<div class="container-main">
+<p-panel header="Prijava administratora" class="container">
+    <div>
+        <table>
+            <tr>
+                <td>Korisnicko ime:</td>
+                <td>
+                    <input type="text" pInputText [(ngModel)]="korisnik.korisnicko_ime"
+                    style="width: 100%;">
+                </td>
+            </tr>
+            <tr>
+                <td>Lozinka:</td>
+                <td>
+                    <p-password [(ngModel)]="korisnik.lozinka" [toggleMask]="true"
+                    [style]="{'width': '100%'}" />
+                   <!-- <input type="password" pInputText  [(ngModel)]="korisnik.lozinka"> -->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p-button (click)="prijavaAdmin()">Prijava</p-button>
+                </td>
+                <td>
+                    <span style="color: red;">{{poruka}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</p-panel>
+</div>
+
+

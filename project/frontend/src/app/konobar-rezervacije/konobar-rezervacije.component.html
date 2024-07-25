@@ -1,0 +1,144 @@
+<div class="container-main">
+
+<p-panel header="Zahtevi rezervacija" class="container2">
+    <p-table [value]="rezervacije_zahtevi">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="Pocetak">
+                    Pocetak
+                </th>
+                <th pSortableColumn="Kraj">
+                    Kraj
+                </th>
+                <th pSortableColumn="broj_mesta">
+                    Broj mesta
+                </th>
+                <th pColumn="Opis">
+                    Opis
+                </th>
+                <th>
+                    Stolovi
+                </th>
+                <th>
+                    Prihvati
+                </th>
+                <th>
+                    Razlog
+                </th>
+                <th>
+                    Odbij
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rezervacije_zahtevi>
+            <tr>
+                <td>
+                    {{rezervacije_zahtevi.pocetak|date: 'dd.MM.yyyy HH:mm'}}
+                </td>
+                <td>
+                    {{rezervacije_zahtevi.kraj|date: 'dd.MM.yyyy HH:mm'}}
+                </td>
+                <td>
+                    {{rezervacije_zahtevi.broj_mesta}}
+                </td>
+                <td>
+                    {{rezervacije_zahtevi.opis}}
+                </td>
+                <td>
+                    <div *ngIf="rezervacije_zahtevi.stolovi && rezervacije_zahtevi.stolovi.length > 0; else noOptions">
+                        <p-dropdown 
+                            [options]="rezervacije_zahtevi.stolovi" 
+                            [(ngModel)]="rezervacije_zahtevi.stol" 
+                            optionLabel="naziv" 
+                            placeholder="Izaberi stol" 
+                            appendTo="body" />  
+                      </div>   
+                      <ng-template #noOptions>
+                        <p>Trenutno nema dostupnih stolova.</p>
+                      </ng-template>
+                </td>
+                <td>
+                    <p-button (click)="prihvatiRezervaciju(rezervacije_zahtevi)">Prihvati</p-button>
+                </td>
+                <td>
+                    <textarea pInputTextarea  [(ngModel)]="rezervacije_zahtevi.razlog"></textarea>
+                </td>
+    
+                <td>
+                    <p-button (click)="odbijRezervaciju(rezervacije_zahtevi)">Odbij</p-button>
+                </td>
+            
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+<br/>
+
+<canvas #canvas width="400" height="400" style="border: 1px solid black;"></canvas>
+
+
+<p-panel header="Moje danasnje rezervacije" class="container2">
+    <p-table [value]="rezervacije_danas">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    Pocetak
+                </th>
+                <th>
+                    Kraj
+                </th>
+                <th>
+                    Broj mesta
+                </th>
+                <th>
+                    Stol
+                </th>
+                <th>
+                    Opis
+                </th>
+                <th>
+                    Dosao
+                </th>
+                <th>
+                    Nije dosao
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rezervacije_danas>
+            <tr>
+                <td>
+                    {{rezervacije_danas.pocetak|date: 'dd.MM.yyyy HH:mm'}}
+                </td>
+                <td>
+                    {{rezervacije_danas.kraj|date: 'dd.MM.yyyy HH:mm'}}
+                </td>
+                <td>
+                    {{rezervacije_danas.broj_mesta}}
+                </td>
+                <td>
+                    {{rezervacije_danas.stol.naziv}}
+                </td>
+                <td>
+                    {{rezervacije_danas.opis}}
+                </td>
+                <td>
+                    <div *ngIf="proveriDatum(rezervacije_danas)">
+                        <p-button (click)="dosaoGost(rezervacije_danas)">Dosao</p-button>
+    
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="proveriDatum(rezervacije_danas)">
+                        <p-button (click)="nijeDosaoGost(rezervacije_danas)">Nije dosao</p-button>
+                    </div>
+                </td>
+            
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+</div>
+
+

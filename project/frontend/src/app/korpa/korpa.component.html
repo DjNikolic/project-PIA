@@ -1,0 +1,55 @@
+<div class="container-main">
+    
+<p-panel header="Korpa" class="container2">
+    <p-table [value]="stavke" class="p-table">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    Jelo
+                </th>
+                <th>
+                    Slika
+                </th>
+                <th>
+                    Cena
+                </th>
+                <th>
+                    Kolicina
+                </th>
+                <th>
+                    Promeni kolicinu
+                </th>
+                <th>
+                    Ukloni 
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-stavke>
+            <tr>
+                <td>
+                    {{stavke.jelovnik.naziv}}
+                </td>
+                <td>
+                    <img [src]="'../assets/jelovnik/'+ stavke.jelovnik.slika" width="100" height="100">
+                </td>
+                <td>
+                    {{stavke.jelovnik.cena}}
+                </td>
+                <td>
+                    {{stavke.kolicina}}
+                </td>
+                <td>
+                    <p-button icon="pi pi-plus" (click)="uvecaj(stavke)"></p-button>
+                    <p-button icon="pi pi-minus"(click)="smanji(stavke)"></p-button>
+                </td>
+                <td>
+                    <p-button (click)="obrisi(stavke)">Obrisi</p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <div *ngIf="stavke.length > 0">
+        <p-button (click)="poruci()">Poruci</p-button>
+    </div>
+</p-panel>
+</div>
