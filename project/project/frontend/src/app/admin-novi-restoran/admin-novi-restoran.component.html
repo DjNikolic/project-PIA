@@ -1,0 +1,89 @@
+<div class="container-main">
+
+<p-panel header="Novi restoran" class="container">
+    <div>
+        <form (ngSubmit)="dodajRestoran(dodajRestoranForm)" #dodajRestoranForm="ngForm" novalidate>
+            <table>
+                <tr>
+                    <td>Naziv restorana:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_restoran.naziv" #naziv="ngModel" required 
+                        name="naziv"
+                        style="width: 100%;">
+                        <div *ngIf="naziv.invalid && (naziv.dirty || naziv.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td>Tip restorana:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_restoran.tip" #tip="ngModel" required 
+                        name="tip"
+                        style="width: 100%;">
+                        <div *ngIf="tip.invalid && (tip.dirty || tip.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Adresa restorana:</td>
+                    <td>
+                        <input type="text" pInputText  [(ngModel)]="novi_restoran.adresa" #adresa="ngModel" required 
+                        name="adresa"
+                        style="width: 100%;">
+                        <div *ngIf="adresa.invalid && (adresa.dirty || adresa.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Opis restorana:</td>
+                    <td>
+                        <textarea pInputTextarea [(ngModel)]="novi_restoran.opis" #opis="ngModel" required 
+                        name="opis"
+                        style="width: 100%;"> </textarea>
+                        <div *ngIf="opis.invalid && (opis.dirty || opis.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Broj telefona:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_restoran.telefon"  #telefon="ngModel" required 
+                        name="telefon"
+                        style="width: 100%;"
+                        pattern="^(\+3816|06)[0-9]{7,8}$">
+                        <div *ngIf="telefon.invalid && (telefon.dirty || telefon.touched)">
+                            <span *ngIf="telefon.errors?.['required']" style="color: red;"> Ovo je obavezno polje</span>
+                            <span *ngIf="telefon.errors?.['pattern']" style="color: red;"> Telefon nije unet u odgovarajucem formatu</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>JSON fajl stolova restorana:</td>
+                    <td>
+                        <p-fileUpload mode="basic" chooseIcon="pi pi-upload" chooseLabel="Izaberi" accept=".json" (onSelect)="unosStolova($event)"/>
+                    </td>
+                    <!--
+                    <td>
+                        <input type="file" (change)="unosStolova($event)" accept=".json" required>
+                    </td>
+                    <td *ngIf="stoloviRequired && !stoloviLoaded">
+                        <span style="color: red;"> Ovo je obavezno polje</span>
+                    </td>
+                    -->
+                </tr>
+                <tr>
+                    <td>
+                        <p-button type="submit">Potvrdi</p-button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</p-panel>
+
+</div>

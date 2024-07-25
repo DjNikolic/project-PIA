@@ -1,0 +1,186 @@
+<div class="container-main">
+    
+<p-panel header="Novi konobar" class="container">
+    <div>
+        <form (ngSubmit)="dodajKonobara(dodajKonobaraForm)" #dodajKonobaraForm="ngForm" novalidate>
+            <table>
+                <tr>
+                    <td>Korisnicko ime:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_konobar.konobar.korisnicko_ime" #korisnicko_ime="ngModel" required 
+                        name="korisnicko_ime"
+                        style="width: 100%;">
+                        <div *ngIf="korisnicko_ime.invalid && (korisnicko_ime.dirty || korisnicko_ime.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Lozinka:</td>
+                    <td>
+                        <p-password [(ngModel)]="novi_konobar.konobar.lozinka" [toggleMask]="true" #lozinka="ngModel" required
+                        name="lozinka"
+                        [style]="{'width': '100%'}"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z]{3,})(?=.*\d)(?=.*[\W_]).{6,10}$"/>
+                        <!--
+                        <input type="password" pInputText [(ngModel)]="novi_konobar.konobar.lozinka" #lozinka="ngModel" required
+                        name="lozinka"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z]{3,})(?=.*\d)(?=.*[\W_]).{6,10}$">
+                        -->
+                        <div *ngIf="lozinka.invalid && (lozinka.dirty || lozinka.touched)">
+                            <span *ngIf="lozinka.errors?.['required']" style="color: red;"> Ovo je obavezno polje</span>
+                            <span *ngIf="lozinka.errors?.['pattern']" style="color: red;"> Lozinka nije uneta u odgovarajucem formatu</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Bezbednosno pitanje:</td>
+                    <td>
+                        <textarea pInputTextarea [(ngModel)]="novi_konobar.konobar.bezbedonosno_pitanje" #bezbedonosno_pitanje="ngModel" required
+                        name="bezbedonosno_pitanje"
+                        style="width: 100%;"></textarea>
+                        <div *ngIf="bezbedonosno_pitanje.invalid && (bezbedonosno_pitanje.dirty || bezbedonosno_pitanje.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Bezbednosni odgovor:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_konobar.konobar.odgovor" #odgovor="ngModel" required
+                        name="odgovor"
+                        style="width: 100%;">
+                        <div *ngIf="odgovor.invalid && (odgovor.dirty || odgovor.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Ime:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_konobar.konobar.ime" #ime="ngModel" required 
+                        name="ime"
+                        pattern="^[A-Za-z]+$"
+                        style="width: 100%;">
+                        <div *ngIf="ime.invalid && (ime.dirty || ime.touched)">
+                            <span *ngIf="ime.errors?.['required']" style="color: red;"> Ovo je obavezno polje</span>
+                            <span *ngIf="ime.errors?.['pattern']" style="color: red;"> Ime nije u odgovarajucem formatu</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Prezime:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_konobar.konobar.prezime" #prezime="ngModel" required 
+                        name="prezime"
+                        pattern="^[A-Za-z]+$"
+                        style="width: 100%;">
+                        <div *ngIf="prezime.invalid && (prezime.dirty || prezime.touched)">
+                            <span *ngIf="prezime.errors?.['required']" style="color: red;"> Ovo je obavezno polje</span>
+                            <span *ngIf="prezime.errors?.['pattern']" style="color: red;"> Prezime nije u odgovarajucem formatu</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Pol:</td>
+                    <td>
+                        <div class="flex flex-wrap gap-3">
+                            <div class="flex align-items-center">
+                                <p-radioButton name="pol" value="M" [(ngModel)]="novi_konobar.konobar.pol" #pol="ngModel" required />  Muski
+                            </div>
+                            <div class="flex align-items-center">
+                                <p-radioButton name="pol" value="Z" [(ngModel)]="novi_konobar.konobar.pol" #pol="ngModel" required />  Zenski
+                            </div>
+                        </div>
+                        <!--
+                        <input type="radio" name="pol" [(ngModel)]="korisnik.pol" value="M" #pol="ngModel" required> Muski
+                        <input type="radio" name="pol" [(ngModel)]="korisnik.pol" value="Z" #pol="ngModel" required> Zenski
+                        -->
+                        <div *ngIf="pol.invalid && (pol.dirty || pol.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Adresa:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_konobar.konobar.adresa" #adresa="ngModel" required
+                        name="adresa"
+                        style="width: 100%;">
+                        <div *ngIf="adresa.invalid && (adresa.dirty || adresa.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Telefon:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_konobar.konobar.telefon"  #telefon="ngModel" required 
+                        name="telefon"
+                        pattern="^(\+3816|06)[0-9]{7,8}$"
+                        style="width: 100%;">
+                        <div *ngIf="telefon.invalid && (telefon.dirty || telefon.touched)">
+                            <span *ngIf="telefon.errors?.['required']" style="color: red;"> Ovo je obavezno polje</span>
+                            <span *ngIf="telefon.errors?.['pattern']" style="color: red;"> Telefon nije unet u odgovarajucem formatu</span>
+                        </div>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>Mejl:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="novi_konobar.konobar.mejl"  #mejl="ngModel" required
+                        name="mejl" 
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        style="width: 100%;">
+                        <div *ngIf="mejl.invalid && (mejl.dirty || mejl.touched)">
+                            <span *ngIf="mejl.errors?.['required']" style="color: red;"> Ovo je obavezno polje</span>
+                            <span *ngIf="mejl.errors?.['pattern']" style="color: red;"> Mejl nije unet u odgovarajucem formatu</span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Slika:</td>
+                    <td>
+                        <p-fileUpload mode="basic" chooseIcon="pi pi-upload" chooseLabel="Izaberi" accept="image/jpeg, image/png" (onSelect)="unetaSlika($event)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Restoran:</td>
+                    <td>
+                        <p-dropdown 
+                                [style]="{'width': '100%'}"
+                                #restoran="ngModel"
+                                name="restoran"
+                                [options]="restorani" 
+                                [(ngModel)]="novi_konobar.restoran" 
+                                optionLabel="naziv"
+                                placeholder="Restorani"
+                                appendTo="body"
+                                [required]="true" />
+                        <div *ngIf="restoran.invalid && (restoran.dirty || restoran.touched)">
+                            <span style="color: red;"> Ovo je obavezno polje</span>
+                        </div>
+                    </td>
+                </tr>
+                 
+                <tr>
+                    <td>
+                        <p-button label="Registracija" type="submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</p-panel>
+
+</div>

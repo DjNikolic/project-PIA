@@ -1,0 +1,71 @@
+<div class="container-main">
+<p-panel header="Zahtevi" class="container2">
+    <p-table [value]="zahtevi" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    Korisnicko ime
+                </th>
+                <th>
+                    Ime
+                </th>
+                <th>
+                    Prezime
+                </th>
+                <th>
+                    Pol
+                </th>
+                <th>
+                    Adresa
+                </th>
+                <th>
+                    Telefon
+                </th>
+                <th>
+                    Mejl
+                </th>
+                <th>
+                    Odobri
+                </th>
+                <th>
+                    Odbij
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-zahtevi>
+            <tr>
+                <td>
+                    {{zahtevi.korisnicko_ime}}
+                </td>
+                <td>
+                    {{zahtevi.ime}}
+                </td>
+                <td>
+                    {{zahtevi.prezime}}
+                </td>
+                <td>
+                    {{zahtevi.pol}}
+                </td>
+                <td>
+                    {{zahtevi.adresa}}
+                </td>
+                <td>
+                    {{zahtevi.telefon}}
+                </td>
+                <td>
+                    {{zahtevi.mejl}}
+                </td>
+                <td>
+                    <p-button (click)="odobriZahtev(zahtevi.id)">Odobri</p-button>
+    
+                </td>
+                <td>
+                    <p-button (click)="odbijZahtev(zahtevi.id)">Odbij</p-button>
+                </td>
+            
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+</div>
