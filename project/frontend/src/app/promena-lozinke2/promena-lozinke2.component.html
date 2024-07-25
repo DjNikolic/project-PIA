@@ -1,0 +1,28 @@
+<div class="container-main">
+    <p-panel header="Bezbedonosno pitanje" class="container">
+    <div>
+        <table>
+            <tr>
+                <td>Pitanje:</td>
+                <td>{{korisnik.bezbedonosno_pitanje}}</td>
+            </tr>
+            <tr>
+                <td>Odgovor:</td>
+                <td>
+                    <input type="text" pInputText [(ngModel)]="odgovor"
+                    style="width: 100%;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p-button label="Potvrdi" (click)="potvrdi()"/>
+                </td>
+                <td>
+                    <span style="color: red;">{{poruka}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</p-panel>
+</div>
+

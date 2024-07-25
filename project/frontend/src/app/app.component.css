@@ -1,0 +1,27 @@
+footer {
+    position: fixed; /* fiksira element na poziciji */
+    bottom: 0; /* postavlja ga na dno stranice */
+    width: 100%; /* postavlja širinu footer-a da bude 100% */
+    border-top: 1px;
+    background-color: color(srgb-linear rgb(194, 111, 111) green blue); /* pozadinska boja, možeš promeniti po želji */
+    z-index: 1000; /* postavlja visinu sloja iznad ostalih elemenata */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* dodaje senku iznad footer-a za bolju vidljivost */
+    padding: 10px 0; /* Dodaj padding da footer ima malo prostora unutra */
+    text-align: right; /* Centriraj tekst unutar footer-a */
+  }
+
+header {
+    position: fixed; /* fiksira element na poziciji */
+    top: 0; /* postavlja ga na vrh stranice */
+    width: 100%; /* postavlja širinu header-a da bude 100% */
+    background-color: lightgray; /* pozadinska boja, možeš promeniti po želji */
+    z-index: 1000; /* postavlja visinu sloja iznad ostalih elemenata */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* dodaje senku ispod header-a za bolju vidljivost */
+  }
+
+  .body {
+    flex: 1; /* Ovaj stil omogućava da .body popuni sav preostali prostor */
+    margin-top: 60px; /* Prilagodi visini header-a */
+    padding-bottom: 40px; /* Prilagodi visini footer-a */
+    overflow-y: auto; /* Omogućava skrolovanje unutar .body ako sadržaj prelazi visinu prozora */
+  }

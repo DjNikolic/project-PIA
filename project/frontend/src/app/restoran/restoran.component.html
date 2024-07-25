@@ -1,0 +1,139 @@
+<div class="container-main">
+<p-panel header="Detalji o restoranu" class="container">
+    <table class="component-center">
+        <tr>
+            <td width="50%">Naziv:</td>
+            <td width="50%">{{restoran.naziv}}</td>
+        </tr>
+        <tr>
+            <td width="50%">Adresa:</td>
+            <td width="50%">{{restoran.adresa}}</td>
+        </tr>
+        <tr>
+            <td width="50%">Tip:</td>
+            <td width="50%">{{restoran.tip}}</td>
+        </tr>
+        <tr>
+            <td width="50%">Telefon:</td>
+            <td width="50%">{{restoran.telefon}}</td>
+        </tr>
+    </table>
+</p-panel>
+
+
+
+    <p-panel header="Rezervacija stola" class="container">
+        <div>
+       <table class="component-center">
+            <tr>
+                <td style="width:50%">
+                    Datum i vreme:
+                </td>
+                <td style="width:50%">
+                    <p-calendar 
+                    [style]="{'width': '100%'}"
+                    inputId="calendar-24h" 
+                    [(ngModel)]="rezervacija.pocetak"
+                    [showTime]="true" 
+                    [hourFormat]="'24'"
+                    [minDate]="minDate"
+                    appendTo="body"  />
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50%">
+                    Broj osoba:
+                </td>
+                <td style="width:50%">
+                    <p-inputNumber
+                        [style]="{'width': '100%'}" 
+                        [(ngModel)]="rezervacija.broj_mesta" 
+                        [showButtons]="true" 
+                        buttonLayout="horizontal" 
+                        inputId="horizontal" 
+                        spinnerMode="horizontal" 
+                        [step]="1"
+                        [min]="1"
+                        incrementButtonIcon="pi pi-plus" 
+                        decrementButtonIcon="pi pi-minus"
+                    ></p-inputNumber>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50%">
+                    Opis:
+                </td>
+                <td style="width:50%">
+                    <textarea pInputTextarea [(ngModel)]="rezervacija.opis"
+                    style="width: 100%;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <p-button (click)="rezervisi()">Rezervisi</p-button>
+            </tr>
+        </table>
+    </div>
+    </p-panel>
+
+
+
+    <p-panel header="Jelovnik" class="container2">
+        <p-table [value]="jelovnik">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>
+                        Naziv
+                    </th>
+                    <th>
+                        Slika
+                    </th>
+                    <th>
+                        Cena
+                    </th>
+                    <th>
+                        Sastojci
+                    </th>
+                    <th>
+                        Kolicina
+                    </th>
+                    <th>
+                        Dodaj u korpu
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-jelovnik>
+                <tr>
+                    <td>
+                        {{jelovnik.naziv}}
+                    </td>
+                    <td>
+                        <img [src]="'../assets/jelovnik/'+jelovnik.slika" width="100" height="100">
+                    </td>
+                    <td>
+                        {{jelovnik.cena}}
+                    </td>
+                    <td>
+                        {{jelovnik.sastojci}}
+                    </td>
+                    <td>
+                        <p-inputNumber 
+                            [(ngModel)]="kolicine[jelovnik.id]" 
+                            [showButtons]="true" 
+                            buttonLayout="horizontal" 
+                            inputId="horizontal" 
+                            spinnerMode="horizontal" 
+                            [step]="1"
+                            [min]="1"
+                            incrementButtonIcon="pi pi-plus" 
+                            decrementButtonIcon="pi pi-minus"
+                        ></p-inputNumber>
+                    <td>
+                        <p-button (click)="dodajUKorpu(jelovnik)">Dodaj</p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+</div>
+
+

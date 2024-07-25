@@ -1,0 +1,72 @@
+<div class="container-main">
+<p-panel header="Promena lozinke" class="container">
+    <div>
+        <form (ngSubmit)="potvrdi(forma)" #forma="ngForm" novalidate>
+            <table>
+                <tr>
+                    <td>Korisnicko ime:</td>
+                    <td>
+                        <input type="text" pInputText [(ngModel)]="korisnik.korisnicko_ime" #ki="ngModel" required
+                        style="width: 100%;"
+                        name="korisnicko_ime">
+                    </td>
+                    <td *ngIf="ki.invalid && (ki.dirty || ki.touched)">
+                        <span style="color: red;"> Ovo je obavezno polje</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Stara lozinka:</td>
+                    <td>
+                        <p-password [(ngModel)]="korisnik.lozinka" [toggleMask]="true" name="lozinka"
+                        [style]="{'width': '100%'}"/>
+                        <!--
+                        <input type="password" pInputText [(ngModel)]="korisnik.lozinka"
+                        name="lozinka">
+                        -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nova lozinka:</td>
+                    <td>
+                        <p-password [(ngModel)]="lozinka_nova1" [toggleMask]="true" #ln1="ngModel"
+                        name="lozinka_nova1"
+                        [style]="{'width': '100%'}"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z]{3,})(?=.*\d)(?=.*[\W_]).{6,10}$"/>
+                        <!--
+                        <input type="password" pInputText [(ngModel)]="lozinka_nova1"  #ln1="ngModel"
+                        name="lozinka_nova1"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z]{3,})(?=.*\d)(?=.*[\W_]).{6,10}$">
+                        -->
+                    </td>
+                    <td *ngIf="ln1.invalid && (ln1.dirty || ln1.touched)">
+                        <span *ngIf="ln1.errors?.['pattern']" style="color: red;"> Lozinka nije uneta u odgovarajucem formatu</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ponovi novu lozinku:</td>
+                    <td>
+                        <p-password [(ngModel)]="lozinka_nova2" [toggleMask]="true" #ln2="ngModel"
+                        name="lozinka_nova2"
+                        [style]="{'width': '100%'}"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z]{3,})(?=.*\d)(?=.*[\W_]).{6,10}$"/>
+                        <!--
+                        <input type="password" pInputText [(ngModel)]="lozinka_nova2" #ln2="ngModel"
+                        name="lozinka_nova2"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z]{3,})(?=.*\d)(?=.*[\W_]).{6,10}$">
+                        -->
+                    </td>
+                    <td *ngIf="ln2.invalid && (ln2.dirty || ln2.touched)">
+                        <span *ngIf="ln2.errors?.['pattern']" style="color: red;"> Lozinka nije uneta u odgovarajucem formatu</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p-button label="Potvrdi" type="submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</p-panel>
+</div>
+
